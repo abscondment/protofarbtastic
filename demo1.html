@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Farbtastic</title>
+    <script type="text/javascript" src="prototype.js"></script>
+    <script type="text/javascript" src="protofarbtastic.js"></script>
+    <link rel="stylesheet" href="protofarbtastic.css" type="text/css" />
+    <script type="text/javascript" charset="utf-8">
+      Event.observe(window,
+                    'load',
+                    function() {
+                      $('demo').hide();
+                      $('picker').protofarbtastic('color');
+                    });
+    </script>
+  </head>
+  <body>
+    <h1>Prototype Color Picker: ProtoFarbtastic</h1>
+
+    <div id="demo" style="color: red; font-size: 1.4em">prototype.js is not present. You must install Prototype in this folder for the demo to work.</div>
+
+    <form action="" style="width: 400px;">
+      <div class="form-item"><label for="color">Color:</label><input type="text" id="color" name="color" value="#123456" /></div><div id="picker"></div>
+    </form>
+
+  </body>
+</html>

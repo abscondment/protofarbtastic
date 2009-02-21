@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Farbtastic</title>
+    <script type="text/javascript" src="prototype.js"></script>
+    <script type="text/javascript" src="protofarbtastic.js"></script>
+    <link rel="stylesheet" href="protofarbtastic.css" type="text/css" />
+    <style type="text/css" media="screen">
+      .colorwell {
+      border: 2px solid #fff;
+      width: 6em;
+      text-align: center;
+      cursor: pointer;
+      }
+      body .colorwell-selected {
+      border: 2px solid #000;
+      font-weight: bold;
+      }
+    </style>
+    
+    <script type="text/javascript" charset="utf-8">
+      <!--
+  Event.observe(window,
+                'load',
+                function() {
+                  $('demo').hide();
+		  var f = $('picker').protofarbtastic();
+		  var p = $('picker');
+		  p.setStyle({opacity: 0.25});
+		  var selected;
+		  $A($$('.colorwell')).each(
+		    function (el) {
+		      f.linkTo(el);
+		      $(el).setStyle({opacity: 0.75});
+		      Event.observe(el, 'focus', function(ev) {
+ 		        if (selected) {
+			  $(selected).setStyle({opacity: 0.75});
+			  $(selected).removeClassName('colorwell-selected');
+			}
+			f.linkTo(this);
+			p.setStyle({opacity: 1});
+			selected = this;
+			$(selected).setStyle({opacity: 1});
+			$(selected).addClassName('colorwell-selected');
+		    });
+		});
+  });
+      // -->
+    </script>
+  </head>
+  <body>
+    <h1>Prototype Color Picker: ProtoFarbtastic</h1>
+
+    <div id="demo" style="color: red; font-size: 1.4em">prototype.js is not present. You must install Prototype in this folder for the demo to work.</div>
+
+    <form action="" style="width: 500px;">
+      <div id="picker" style="float: right;"></div>
+      <div class="form-item"><label for="color1">Color 1:</label><input type="text" id="color1" name="color1" class="colorwell" value="#123456" /></div>
+      <div class="form-item"><label for="color2">Color 2:</label><input type="text" id="color2" name="color2" class="colorwell" value="#123456" /></div>
+      <div class="form-item"><label for="color3">Color 3:</label><input type="text" id="color3" name="color3" class="colorwell" value="#123456" /></div>
+      
+    </form>
+  </body>
+</html>
