@@ -18,8 +18,8 @@ ProtoFarbtastic.prototype = {
     
     // Insert markup
     $(container).innerHTML = '<div class="farbtastic"><div class="color"></div><div class="wheel"></div><div class="overlay"></div><div class="h-marker marker"></div><div class="sl-marker marker"></div></div>';
-    var e = $A(document.getElementsByClassName('farbtastic', container));
-    fb.wheel = document.getElementsByClassName('wheel', container)[0];
+    var e = $A(container.select('.farbtastic'));
+    fb.wheel = container.select('.wheel')[0];
     // Dimensions
     fb.radius = 84;
     fb.square = 100;
@@ -225,28 +225,33 @@ ProtoFarbtastic.prototype = {
     fb.updateDisplay = function () {
       // Markers
       var angle = fb.hsl[0] * 6.28;
-      $A(document.getElementsByClassName('h-marker', e)).each(function(el) {
-          el.setStyle({
-            left: Math.round(Math.sin(angle) * fb.radius + fb.width / 2) + 'px',
-            top: Math.round(-Math.cos(angle) * fb.radius + fb.width / 2) + 'px'
-          });
+      $A(e).each(function(itE) {
+          $A(itE.select('.h-marker')).each(function(el) {
+              el.setStyle({
+                left: Math.round(Math.sin(angle) * fb.radius + fb.width / 2) + 'px',
+                    top: Math.round(-Math.cos(angle) * fb.radius + fb.width / 2) + 'px'
+                    });
+            });
         });
 
-
-      $A(document.getElementsByClassName('sl-marker', e)).each(function(el) {
-          el.setStyle({
-            left: Math.round(fb.square * (.5 - fb.hsl[1]) + fb.width / 2) + 'px',
-            top: Math.round(fb.square * (.5 - fb.hsl[2]) + fb.width / 2) + 'px'              
-          });
+      $A(e).each(function(itE) {
+          $A(itE.select('.sl-marker')).each(function(el) {
+              el.setStyle({
+                left: Math.round(fb.square * (.5 - fb.hsl[1]) + fb.width / 2) + 'px',
+                    top: Math.round(fb.square * (.5 - fb.hsl[2]) + fb.width / 2) + 'px'              
+                    });
+            });
         });
-
+      
       // Saturation/Luminance gradient
-      $A(document.getElementsByClassName('color', e)).each(function(el) {
-          el.setStyle({
-            backgroundColor: fb.pack(fb.HSLToRGB([fb.hsl[0], 1, 0.5]))
-          });
+      $A(e).each(function(itE) {
+          $A(itE.select('.color')).each(function(el) {
+              el.setStyle({
+                backgroundColor: fb.pack(fb.HSLToRGB([fb.hsl[0], 1, 0.5]))
+                    });
+            });
         });
-
+      
       // Linked elements or callback
       if (typeof fb.callback == 'object') {
         // Set background/foreground color
